@@ -1,6 +1,6 @@
 package com.asps.graphqlcatalog.controller.graphql;
 
-import com.asps.graphqlcatalog.document.Category;
+import com.asps.graphqlcatalog.entity.Category;
 import com.asps.graphqlcatalog.dto.input.CreateCategoryInput;
 import com.asps.graphqlcatalog.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class CategoryGraphQl {
+public class CategoryGraphQL {
 
     private final CategoryService categoryService;
 
@@ -28,12 +28,12 @@ public class CategoryGraphQl {
     }
 
     @MutationMapping
-    public Boolean deleteCategory(@Argument String id){
+    public Boolean deleteCategory(@Argument Long id){
         return categoryService.deleteById(id);
     }
 
     @QueryMapping
-    public Category category(@Argument String id){
+    public Category category(@Argument Long id){
         return categoryService.findById(id);
     }
 

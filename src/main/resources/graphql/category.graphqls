@@ -1,5 +1,5 @@
 type Category {
-    id: ID
+    id: Int
     name: String
     description: String
 }
@@ -10,11 +10,11 @@ input CreateCategoryInput {
 }
 
 extend type Query{
-    category(id: ID!):Category
+    category(id: Int!):Category
     categories:[Category]
 }
 
-type Mutation{
+extend type Mutation {
     createCategory(category: CreateCategoryInput!): Category
-    deleteCategory(id: String!): Boolean
+    deleteCategory(id: Int!): Boolean
 }

@@ -1,0 +1,16 @@
+type Course{
+    id: Int
+    name: String
+    description: String
+    category: Category
+}
+
+input CreateCourseInput{
+    name: String
+    description: String
+    categoryId:Int
+}
+
+extend type Mutation {
+    createCourse(course: CreateCourseInput!): Category
+}

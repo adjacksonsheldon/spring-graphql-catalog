@@ -1,6 +1,6 @@
 package com.asps.graphqlcatalog.service;
 
-import com.asps.graphqlcatalog.document.Category;
+import com.asps.graphqlcatalog.entity.Category;
 import com.asps.graphqlcatalog.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class CategoryService {
         return repository.save(category);
     }
 
-    public Category findById(String id) {
+    public Category findById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -25,7 +25,7 @@ public class CategoryService {
         return repository.findAll();
     }
 
-    public Boolean deleteById(String id) {
+    public Boolean deleteById(Long id) {
         final var category = repository.findById(id);
 
         if(category.isEmpty()){
