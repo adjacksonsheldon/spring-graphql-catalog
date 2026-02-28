@@ -1,12 +1,15 @@
 package com.asps.graphqlcatalog.controller.graphql;
 
 import com.asps.graphqlcatalog.dto.input.CreateCourseInput;
+import com.asps.graphqlcatalog.entity.Category;
 import com.asps.graphqlcatalog.entity.Course;
 import com.asps.graphqlcatalog.service.CategoryService;
 import com.asps.graphqlcatalog.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -22,5 +25,15 @@ public class CourseGraphQL {
                         .description(course.getDescription())
                         .category(categoryService.findById(course.getCategoryId()))
                 .build());
+    }
+
+    @QueryMapping
+    public Course course(@Argument Long id){
+        return courseService.findById(id);
+    }
+
+    @SchemaMapping(typeName = "Course", field = "category")
+    public Category findCategory(Course course) {
+        return categoryService.findById(course.getCategory().getId());
     }
 }

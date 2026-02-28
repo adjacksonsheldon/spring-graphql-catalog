@@ -11,6 +11,10 @@ input CreateCourseInput{
     categoryId:Int
 }
 
+extend type Query{
+    course(id: Int!):Course
+}
+
 extend type Mutation {
     createCourse(course: CreateCourseInput!): Category
 }
