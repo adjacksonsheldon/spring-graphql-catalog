@@ -1,4 +1,4 @@
-package com.asps.springgraphqlcatalog.spring_graphql_catalog;
+package com.asps.graphqlcatalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
