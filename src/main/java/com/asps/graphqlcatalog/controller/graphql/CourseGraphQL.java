@@ -12,6 +12,8 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class CourseGraphQL {
@@ -27,9 +29,20 @@ public class CourseGraphQL {
                 .build());
     }
 
+    @MutationMapping
+    public Boolean deleteCourse(@Argument Long id){
+        return courseService.deleteById(id);
+    }
+
     @QueryMapping
     public Course course(@Argument Long id){
         return courseService.findById(id);
+    }
+
+
+    @QueryMapping
+    public List<Course> courses(){
+        return courseService.findAll();
     }
 
     @SchemaMapping(typeName = "Course", field = "category")

@@ -1,10 +1,11 @@
 type Category {
-    id: Int
-    name: String
-    description: String
+    id: Int!
+    name: String!
+    description: String!
 }
 
 input CreateCategoryInput {
+    id: Int
     name: String!
     description: String!
 }

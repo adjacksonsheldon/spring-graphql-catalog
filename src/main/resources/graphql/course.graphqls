@@ -1,20 +1,23 @@
 type Course{
-    id: Int
-    name: String
-    description: String
-    category: Category
+    id: Int!
+    name: String!
+    description: String!
+    category: Category!
 }
 
 input CreateCourseInput{
-    name: String
-    description: String
-    categoryId:Int
+    id: Int
+    name: String!
+    description: String!
+    categoryId:Int!
 }
 
 extend type Query{
     course(id: Int!):Course
+    courses:[Course]
 }
 
 extend type Mutation {
     createCourse(course: CreateCourseInput!): Category
+    deleteCourse(id: Int!): Boolean
 }
