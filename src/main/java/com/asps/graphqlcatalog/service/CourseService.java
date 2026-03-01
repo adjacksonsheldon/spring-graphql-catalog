@@ -1,5 +1,6 @@
 package com.asps.graphqlcatalog.service;
 
+import com.asps.graphqlcatalog.dto.input.CreateCourseInput;
 import com.asps.graphqlcatalog.entity.Course;
 import com.asps.graphqlcatalog.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourseService {
     private final CourseRepository repository;
+    private final CategoryService categoryService;
 
-    public Course save(Course course){
-        return repository.save(course);
+    public Course save(CreateCourseInput input){
+        return repository.save(courseFromCourseInput(input));
     }
 
     public List<Course> findAll(){
@@ -33,5 +35,15 @@ public class CourseService {
 
         repository.deleteById(id);
         return true;
+    }
+
+    private Course courseFromCourseInput(CreateCourseInput course) {
+        return Course.builder()
+                .name(course.getName())
+                .description(course.getDescription())
+                .startDate(course.getStartDate())
+                .monthlyFee(course.getMonthlyFee())
+                .category(categoryService.findById(course.getCategoryId()))
+                .build();
     }
 }

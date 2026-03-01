@@ -1,6 +1,7 @@
 package com.asps.graphqlcatalog.service;
 
 import com.asps.graphqlcatalog.entity.Category;
+import com.asps.graphqlcatalog.exception.CategoryNotFoundException;
 import com.asps.graphqlcatalog.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class CategoryService {
     }
 
     public Category findById(Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(CategoryNotFoundException::new);
     }
 
     public List<Category> findAll() {

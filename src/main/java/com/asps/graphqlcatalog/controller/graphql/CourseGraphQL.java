@@ -21,31 +21,23 @@ public class CourseGraphQL {
     private final CategoryService categoryService;
 
     @MutationMapping
-    public Course createCourse(@Argument CreateCourseInput course){
-        final var c = Course.builder()
-                .name(course.getName())
-                .description(course.getDescription())
-                .startDate(course.getStartDate())
-                .monthlyFee(course.getMonthlyFee())
-                .category(categoryService.findById(course.getCategoryId()))
-                .build();
-
-        return courseService.save(c);
+    public Course createCourse(@Argument CreateCourseInput course) {
+        return courseService.save(course);
     }
 
     @MutationMapping
-    public Boolean deleteCourse(@Argument Long id){
+    public Boolean deleteCourse(@Argument Long id) {
         return courseService.deleteById(id);
     }
 
     @QueryMapping
-    public Course course(@Argument Long id){
+    public Course course(@Argument Long id) {
         return courseService.findById(id);
     }
 
 
     @QueryMapping
-    public List<Course> courses(){
+    public List<Course> courses() {
         return courseService.findAll();
     }
 
@@ -53,4 +45,5 @@ public class CourseGraphQL {
     public Category findCategory(Course course) {
         return categoryService.findById(course.getCategory().getId());
     }
+
 }
