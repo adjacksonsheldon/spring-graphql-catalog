@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,4 +16,6 @@ public class CreateCourseInput {
     private String name;
     private String description;
     private Long categoryId;
+    private LocalDate startDate;
+    private BigDecimal monthlyFee;
 }

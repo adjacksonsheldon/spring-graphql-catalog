@@ -3,6 +3,9 @@ package com.asps.graphqlcatalog.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @Builder
@@ -17,6 +20,8 @@ public class Course {
     private Long id;
     private String name;
     private String description;
+    private LocalDate startDate;
+    private BigDecimal monthlyFee;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)

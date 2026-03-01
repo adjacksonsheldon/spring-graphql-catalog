@@ -22,11 +22,15 @@ public class CourseGraphQL {
 
     @MutationMapping
     public Course createCourse(@Argument CreateCourseInput course){
-        return courseService.save(Course.builder()
-                        .name(course.getName())
-                        .description(course.getDescription())
-                        .category(categoryService.findById(course.getCategoryId()))
-                .build());
+        final var c = Course.builder()
+                .name(course.getName())
+                .description(course.getDescription())
+                .startDate(course.getStartDate())
+                .monthlyFee(course.getMonthlyFee())
+                .category(categoryService.findById(course.getCategoryId()))
+                .build();
+
+        return courseService.save(c);
     }
 
     @MutationMapping
